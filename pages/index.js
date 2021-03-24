@@ -1,4 +1,4 @@
-function HomePage() {
+function Blog() {
   return (
     <div>
       <h1>yes-xodnd blog</h1>
@@ -6,4 +6,4 @@ function HomePage() {
   )
 }
 
-export default HomePage
+export default Blog
