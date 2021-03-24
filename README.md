@@ -105,3 +105,21 @@ npm run dev
 브라우저에서 해당 주소로 접속하면 `build page: /` 가 출력되고, 해당 컴포넌트를 컴파일해 화면에 보여줍니다. 
 
 ![image-20210323205841804](README.assets/image-20210323205841804.png)
+
+## 배포
+
+git subtree 기능을 이용하여 `gh-pages ` 브랜치를 생성하고, 이를 통해 배포 파일을 관리하도록 하였습니다.
+`package.json` 파일에서 scripts에 명령어를 추가하여 `next export`와 git subtree 푸시를 자동화 하였습니다.
+
+``` json
+// package.json
+{
+	//...
+  "scripts": {
+		// ...
+    "predeploy": "next export",
+    "deploy": "git add out && git commit -m 'deploy gh pages' && git subtree push --prefix out origin gh-pages"
+  }
+}
+```
+
