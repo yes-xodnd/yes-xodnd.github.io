@@ -117,7 +117,7 @@ git subtree 기능을 이용하여 `gh-pages ` 브랜치를 생성하고, 이를
 	//...
   "scripts": {
 		// ...
-    "predeploy": "next export",
+    "predeploy": "next build && next export",
     "deploy": "git add out && git commit -m 'deploy gh pages' && git subtree push --prefix out origin gh-pages"
   }
 }
