@@ -1,5 +1,9 @@
 function HomePage() {
-  return <div>yes-xodnd blog</div>
+  return (
+    <div>
+      <h1>yes-xodnd blog</h1>
+    </div>
+  )
 }
 
 export default HomePage
