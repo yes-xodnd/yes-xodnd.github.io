@@ -1,23 +1,13 @@
-import { getAllPosts } from '../lib/posts';
+import { getAllPosts } from '../lib/api'
+import PostList from '../components/PostList'
 
 function Blog({ allPosts }) {
-
-  const PostItem = ({ title, id }) => (
-    <li key={ id }>
-      <h3>{ title }</h3>
-    </li>
-  )
-
-  const PostList = ({ posts }) => (
-    <ul>
-      { posts.map(post => PostItem(post)) }
-    </ul>
-  )
 
   return (
     <div>
       <h1>yes-xodnd blog</h1>
 
+      <h2>게시물 목록</h2>
       <PostList posts={allPosts} />
     </div>
   )
@@ -27,7 +17,7 @@ export default Blog
 
 
 export async function getStaticProps() {
-  const allPosts = getAllPosts()
+  const allPosts = getAllPosts(['slug', 'title', 'date'])
   return {
     props: {
       allPosts
