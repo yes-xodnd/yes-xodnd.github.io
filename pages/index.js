@@ -1,7 +1,4 @@
-// lib
 import { getAllPosts } from '../lib/api'
-
-// component
 import PostList from '../components/PostList'
 
 function Blog({ allPosts }) {
@@ -17,6 +14,7 @@ function Blog({ allPosts }) {
 }
 
 export default Blog
+
 
 export async function getStaticProps() {
   const allPosts = getAllPosts(['slug', 'title', 'date'])
