@@ -1,15 +1,36 @@
-import getSortedPosts from '../lib';
+import { getMatteredPosts } from '../lib/posts';
 
-function Blog() {
-  getSortedPosts()
-  
+function Blog({ allPosts }) {
+
+  const PostItem = ({ title, id }) => (
+    <li key={ id }>
+      <h3>{ title }</h3>
+    </li>
+  )
+
+  const PostList = ({ posts }) => (
+    <ul>
+      { posts.map(post => PostItem(post)) }
+    </ul>
+  )
+
   return (
     <div>
       <h1>yes-xodnd blog</h1>
-      <p>test</p>
+
+      <PostList posts={allPosts} />
     </div>
   )
 }
 
 export default Blog
 
+
+export async function getStaticProps() {
+  const allPosts = getMatteredPosts()
+  return {
+    props: {
+      allPosts
+    }
+  }
+} 
