@@ -108,8 +108,9 @@ npm run dev
 
 ## 배포
 
-git subtree 기능을 이용하여 `gh-pages ` 브랜치를 생성하고, 이를 통해 배포 파일을 관리하도록 하였습니다.
-`package.json` 파일에서 scripts에 명령어를 추가하여 `next export`와 git subtree 푸시를 자동화 하였습니다.
+정적 사이트로 배포하기 위해 `next build` 를 실행한 뒤 `next export`를 실행하고, 빌드로 생성된 `/out` 디렉토리의 파일들을 github pages 호스팅의 소스코드로 사용하도록 하였습니다.
+
+이를 위해 git subtree 기능을 이용하여 `gh-pages ` 브랜치를 생성하고, `package.json` 파일에서 `deploy` 명령어를 추가하여 `next export`와 git subtree 푸시를 한 번에 해결할 수 있도록 하였습니다.
 
 ``` json
 // package.json
