@@ -1,4 +1,8 @@
+import getSortedPosts from '../lib';
+
 function Blog() {
+  getSortedPosts()
+  
   return (
     <div>
       <h1>yes-xodnd blog</h1>
@@ -8,3 +12,4 @@ function Blog() {
 }
 
 export default Blog
+
