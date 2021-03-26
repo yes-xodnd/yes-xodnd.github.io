@@ -187,3 +187,13 @@ function getPostsGrayMattered() {
 
 front-matter 영역에 작성한 `title`, `date`, `author`가 파싱되어 `data` 객체로 반환된 것을 확인할 수 있습니다.
 front-matter를 제외한 내용은 `content`에 아직 HTML로 파싱되지 않은 string으로 저장되어 있습니다.
+
+
+
+
+
+---
+
+## Reference
+
+[ppsu님 블로그 - Next,.js 킬포 Pre-rendering](https://ppsu.tistory.com/64)
