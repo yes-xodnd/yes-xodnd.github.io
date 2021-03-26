@@ -1,4 +1,4 @@
-import { getMatteredPosts } from '../lib/posts';
+import { getAllPosts } from '../lib/posts';
 
 function Blog({ allPosts }) {
 
@@ -27,7 +27,7 @@ export default Blog
 
 
 export async function getStaticProps() {
-  const allPosts = getMatteredPosts()
+  const allPosts = getAllPosts()
   return {
     props: {
       allPosts
