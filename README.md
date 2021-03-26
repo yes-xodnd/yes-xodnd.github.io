@@ -124,3 +124,66 @@ npm run dev
 }
 ```
 
+
+
+## markdown 문서 메타 데이터: front-matter
+
+front-matter는 문서에 대한 메타 데이터로, 아래와 같이 markdown 파일의 맨 앞에 3개의 대시(-)로 감싸 작성합니다.
+
+``` markdown
+---
+title: gray-matter로 front-matter 파싱하기
+date: 2021-03-21
+author: yes-xodnd
+---
+```
+
+이를 파싱하기 위해 `gray-matter` 라이브러리를 설치하여 사용하였습니다.
+
+``` bash
+npm install gray-matter
+```
+
+`/_posts` 폴더에 markdown 파일을 생성하고, front-matter 파싱을 테스트하였습니다.
+경로를 찾고 파일을 읽어들이기 위해 node.js의 기본 모듈인 `fs`, `path`를 사용하였습니다.
+
+``` js
+// lib/posts.js
+const fs = require('fs')
+const path = require('path')
+const matter = require('gray-matter')
+
+const postsPath = path.join(process.cwd(), '_posts')
+
+function getPostsGrayMattered() {
+  const fileNames = fs.readdirSync(postsPath)
+
+  const allPosts = fileNames.map(fileName => {
+    const filePath = path.join(postsPath, fileName)
+    const fileContent = fs.readFileSync(filePath, 'utf-8')
+    return matter(fileContent)
+  })
+
+  return allPosts
+}
+```
+
+`getPostsGrayMattered()`의 결과는 다음과 같이 반환됩니다.
+
+``` js
+[
+  {
+    content: '\r\n## gray-matter\r\n\r\ngray matter를 통해 front-matter를 파싱할 수 있습니다. ',
+    data: {
+      title: 'gray-matter로 front-matter 파싱하기',
+      date: 2021-03-26T00:00:00.000Z,
+      author: 'yes-xodnd'
+    },
+    isEmpty: false,
+    excerpt: ''
+  }
+]
+```
+
+front-matter 영역에 작성한 `title`, `date`, `author`가 파싱되어 `data` 객체로 반환된 것을 확인할 수 있습니다.
+front-matter를 제외한 내용은 `content`에 아직 HTML로 파싱되지 않은 string으로 저장되어 있습니다.
