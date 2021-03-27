@@ -51,11 +51,11 @@ tags: JavaScript
 
 - 아래 그림과 같이 계층적 구조를 가지고 있으며, 하위 인터페이스는 상위 인터페이스를 상속합니다.
 
-  ![Hierarchy of interfaces for HTML elements](DOM-API.assets/html-dom-hierarchy.svg)
+  ![Hierarchy of interfaces for HTML elements](../public/assets/DOM-API/html-dom-hierarchy.svg)
 
 - 개발자도구 - Elements - Properties 탭에서 해당 노드 객체가 상속받은 인터페이스와 각각의 속성 및 메서드를 확인할 수 있습니다.
 
-![image-20210208003644007](DOM-API.assets/image-20210208003644007.png)
+![image-20210208003644007](../public/assets/DOM-API/image-20210208003644007.png)
 
 
 
