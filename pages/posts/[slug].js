@@ -3,7 +3,12 @@ import markdownToHtml from '../../lib/markdownToHtml'
 
 function Post({ post }) {
   return (
-    <div>{ post.title }</div>
+    <div>
+      <h1>{ post.title }</h1>
+      <main>
+      <div dangerouslySetInnerHTML={{ __html: post.content }} />
+      </main>
+    </div>
   )
 }
 
@@ -15,8 +20,8 @@ export async function getStaticProps({ params }) {
     'date',
     'content',
   ])
-
   const content = await markdownToHtml(post.content)
+
   return {
     props: {
       post: {

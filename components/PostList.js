@@ -1,15 +1,11 @@
-import Link from 'next/link'
-
 const PostItem = ({ slug, title, date }) => (
   <li key={ slug }>
-    <Link as={`/posts/${slug}`} href="/posts/[slug]">
-      <a href="">
-        <h3>{ title }</h3>
-        <div>
-          <span>{ date }</span>
-        </div>
-      </a>
-    </Link>
+    <a href={`/posts/${slug}`}>
+      <h3>{ title }</h3>
+      <div>
+        <span>{ date }</span>
+      </div>
+    </a>
   </li>
 )
 
