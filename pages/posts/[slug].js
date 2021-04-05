@@ -1,17 +1,34 @@
 import { getAllPosts, getPostBySlug } from '../../lib/api'
-import markdownToHtml from '../../lib/markdownToHtml'
+import markdownToHtml from '../../lib/markdown'
+import styled from 'styled-components'
+import codeHighlight from '../../styles/mixin/codeHighlight'
+
+const Content = styled.main`
+  line-height: 1.8rem;
+
+  a {
+    color: ${({ theme }) => theme.color.primary};
+    text-decoration: none;
+  }
+
+  img {
+    width: 80%;
+    margin: 20px auto;
+  }
+  h2 {
+    margin-top: 3rem;
+  }
+  ${codeHighlight}
+`
 
 function Post({ post }) {
   return (
-    <div>
+    <>
       <h1>{ post.title }</h1>
-      <main>
-      <div dangerouslySetInnerHTML={{ __html: post.content }} />
-      </main>
-    </div>
+      <Content dangerouslySetInnerHTML={{ __html: post.content }} />
+    </>
   )
 }
-
 export default Post
 
 export async function getStaticProps({ params }) {
