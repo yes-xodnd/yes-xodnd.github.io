@@ -5,9 +5,6 @@ function Blog({ allPosts }) {
 
   return (
     <div>
-      <h1>yes-xodnd blog</h1>
-
-      <h2>게시물 목록</h2>
       <PostList posts={allPosts} />
     </div>
   )
@@ -16,8 +13,9 @@ function Blog({ allPosts }) {
 export default Blog
 
 
-export async function getStaticProps() {
-  const allPosts = getAllPosts(['slug', 'title', 'date'])
+export function getStaticProps() {
+  const allPosts = getAllPosts(['slug', 'title', 'date', 'tags'])
+  
   return {
     props: {
       allPosts
