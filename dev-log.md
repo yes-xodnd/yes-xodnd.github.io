@@ -158,6 +158,12 @@ front-matter를 제외한 내용은 `content`에 아직 HTML로 파싱되지 않
 
 Next 공식 홈페이지의 [blog-starter](https://github.com/vercel/next.js/tree/canary/examples/blog-starter) 예시를 따라 `remark`를 설치해 사용했습니다.
 
+``` bash
+npm install remark remark-html
+```
+
+
+
 ``` js
 // lib/markdownToHtml.js
 import remark from 'remark'
