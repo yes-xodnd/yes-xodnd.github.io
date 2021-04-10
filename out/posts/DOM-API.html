@@ -1,0 +1,235 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/main-f0ef828955f203add958.js" as="script"/><link rel="preload" href="/_next/static/chunks/webpack-50bee04d1dc61f8adf5b.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework.4b1beca48388539e3889.js" as="script"/><link rel="preload" href="/_next/static/chunks/3a3f75626beeb6412aba5e6564dc5dac4d3e7fd6.3b920c3faddc10506db9.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-02d64bcb1172d77f6e38.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/posts/%5Bslug%5D-a7c043380c6badf7f3a5.js" as="script"/></head><body><div id="__next"><div><h1>DOM API와 DOM 인터페이스</h1><main><div><h2>들어가며</h2>
+<p>자바스크립트는 동적인 웹페이지를 구현하기 위해 만들어진 스크립트 언어입니다. 동적인 웹페이지를 구현하는 것의 대부분은 문서의 구조나 스타일, 콘텐츠를 변경하는 것이며 이는 DOM(Document Object Model) 조작을 통해 가능합니다. 그렇다면 DOM은 무엇이고 DOM을 조작한다는 것은 어떤 의미인지, 그리고 기본적인 DOM 조작은 어떤 방법들이 있는지 알아보았습니다.</p>
+<h2>TL; DR</h2>
+<ul>
+<li>DOM은 HTML 문서에 접근하고 조작하기 위한 Web API</li>
+<li>DOM의 객체들은 DOM 인터페이스를 상속해 속성과 메서드를 구현</li>
+<li>DOM 인터페이스의 속성 및 메서드를 사용해 DOM에 접근 및 조작 가능</li>
+</ul>
+<h2>1. DOM이란?</h2>
+<ul>
+<li>
+<p>브라우저의 맥락에서 자바스크립트는 핵심 언어인 <a href="https://www.ecma-international.org/publications-and-standards/standards/ecma-262/">ECMA스크립트</a>와 다양한 기능을 제공하는 <a href="https://developer.mozilla.org/ko/docs/Web/API">Web API</a>로 구성되어 있으며, DOM은 대표적인 Web API 중 하나입니다.</p>
+</li>
+<li>
+<p>HTML, XML 문서의 <strong>프로그래밍 인터페이스</strong>로, 문서의 객체를 나타내고 상호작용할 수 있게 합니다.</p>
+</li>
+<li>
+<p>DOM은 문서의 내용과 구조를 노드 트리로 표현하고, 스크립트 언어는 DOM을 통해 문서의 구조, 스타일, 콘텐츠 등을 변경할 수 있습니다.</p>
+</li>
+<li>
+<p>주로 자바스크립트에 의해 사용되지만, 플랫폼 중립적이므로 파이썬 등의 다른 언어를 통해 사용할 수도 있습니다.</p>
+<blockquote>
+<p>DOM 표준 규격은 W3C, WHATWG에서 각각 발표하고 있었으나, 앞으로 단일 버전으로 개발될 예정입니다.</p>
+<p><a href="https://zdnet.co.kr/view/?no=20190531184644">ZDNet 관련기사</a></p>
+</blockquote>
+</li>
+</ul>
+<h2>2. DOM 인터페이스</h2>
+<ul>
+<li>
+<p>DOM은 HTML/XML 문서를 다룰 수 있도록 <a href="https://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/DOM3-Core.html#introduction-ID-E7C30826">DOM 인터페이스</a>를 명시하고 있습니다.</p>
+</li>
+<li>
+<p>DOM 인터페이스는 일종의 추상화된 기본 클래스로, 각각의 속성(Attributes)과 메서드를 가지고 있습니다.</p>
+</li>
+<li>
+<p>대표적으로 <a href="https://developer.mozilla.org/ko/docs/Web/API/EventTarget">EventTarget</a>, <a href="https://developer.mozilla.org/ko/docs/Web/API/Node">Node</a>, <a href="https://developer.mozilla.org/ko/docs/Web/API/HTMLElement">HTMLElement</a> 등이 있습니다.</p>
+</li>
+<li>
+<p>DOM의 객체들은 인터페이스를 상속받아 구현하며, addEventListener, appendChild 등 DOM 조작을 위해 사용하는 메서드들은 해당 객체가 상속받은 DOM 인터페이스의 메서드를 사용하는 것이라고 할 수 있습니다.</p>
+</li>
+<li>
+<p>MDN 문서에서 특정 속성이나 메서드를 검색하면, 앞에 인터페이스를 정의하는 것을 볼 수 있습니다.</p>
+<ul>
+<li>ex: <a href="https://developer.mozilla.org/ko/docs/Web/API/Element/classList">Element.classList</a></li>
+</ul>
+</li>
+<li>
+<p>아래 그림과 같이 계층적 구조를 가지고 있으며, 하위 인터페이스는 상위 인터페이스를 상속합니다.</p>
+<p><img src="../assets/DOM-API/html-dom-hierarchy.svg" alt="Hierarchy of interfaces for HTML elements"></p>
+</li>
+<li>
+<p>개발자도구 - Elements - Properties 탭에서 해당 노드 객체가 상속받은 인터페이스와 각각의 속성 및 메서드를 확인할 수 있습니다.</p>
+</li>
+</ul>
+<p><img src="../assets/DOM-API/image-20210208003644007.png" alt="image-20210208003644007"></p>
+<h2>3. DOM 조작</h2>
+<ul>
+<li>
+<p>DOM 조작은 문서의 요소들이 구현하고 있는 인터페이스의 속성과 메서드를 이용해 가능합니다.</p>
+</li>
+<li>
+<p>기본적으로 DOM 요소를 생성/참조/수정/삭제하는 방법에 대해 작성하였습니다.</p>
+</li>
+</ul>
+<h3>1) 요소 접근 및 선택</h3>
+<ul>
+<li>
+<p><code>Document</code> 인터페이스의 메서드를 이용해 노드에 접근하고 참조할 수 있습니다.</p>
+<pre><code class="language-js">// Document.getElementById(): 해당 id 속성을 가진 요소를 반환합니다.
+// 웹 호환성을 위해 일반 요소에서 사용할 수 없으며, ParentNode에도 구현되어있지 않습니다.
+// 엄밀히는 NoneElementParentNode 인터페이스이며 Document, DocumentFragment가 구현합니다.
+const app = document.getElementById('app');
+
+// Document.getElementByClassName(): 해당 class 속성을 가진 요소를 NodeList 객체로 묶어 반환합니다.
+const searchResult = document.getElementByClassName('search-result');
+
+// Document.getElementByTagName(): 해당 tagName 속성을 가진 요소를 NodeList 객체로 묶어 반환합니다.
+const header = document.getElementByTagName('header');
+</code></pre>
+</li>
+<li>
+<p><code>ParentNode</code>  믹스인 인터페이스의 메서드를 이용하는 방법도 있습니다.</p>
+</li>
+<li>
+<p><code>ParentNode</code>는 <code>Element</code>, <code>Document</code>, <code>DocumentFragment</code> 인터페이스에서 구현됩니다.</p>
+<pre><code class="language-js">// querySelector: CSS 선택자를 이용하여 일치하는 요소 중 첫번째 요소를 반환합니다.
+const headerLogo = document.querySelector('header.logo');
+
+// querySelectorAll: CSS 선택자를 이용하여 일치하는 모든 요소를 NodeList로 반환합니다. 
+const activeList = document.querySelectorAll('.active');
+</code></pre>
+</li>
+<li>
+<p>또는 <code>Node</code> 인터페이스의 속성을 통해 요소 접근 및 선택이 가능합니다.</p>
+<pre><code class="language-js">// 해당하는 노드가 없으면 null을 반환합니다.
+// text 및 comment 또한 노드이므로, 해당 속성을 통해 선택할 수 있으므로,
+// 요소만 선택하고자 할 때는 중간에 Element를 포함한 메서드를 사용합니다.
+
+Node.parentNode             // 현재 요소노드의 부모 노드
+Node.previousSibling        // 이전 형제 노드
+Node.previousElementSibling // 이전 형제 요소 노드
+Node.nextSibling            // 다음 형제 노드
+Node.nextElementSibling     // 다음 형제 요소 노드
+Node.firstChild             // 현재 요소의 첫번째 자식 노드
+Node.firstElementChild      // 현재 요소의 첫번째 자식 요소 노드
+Node.lastChild              // 현재 요소의 마지막 자식 노드
+Node.lastElementChild       // 현재 요소의 마지막 자식 요소 노드
+</code></pre>
+</li>
+</ul>
+<h3>2) 콘텐츠 참조 및 수정</h3>
+<ul>
+<li>
+<p><code>Element</code> 인터페이스의 <code>innerHTML</code> 속성을 이용해 콘텐츠를 참조하고 수정할 수 있습니다.</p>
+<pre><code class="language-js">const header = document.createElement('header');
+- `innerText`는 HTML요소를 제거한 순수한 문자열만을 반환합니다.
+// Element.innerHTML: 요소에 포함된 마크업을 가져오거나 설정합니다.
+header.innerHTML = '&#x3C;h1>hello world&#x3C;/h1>';
+console.log(header.innerHTML) // "&#x3C;h1>hello world&#x3C;/h1>"
+
+// Element.innerText: 
+console.log(header.innerText) // "hello world"
+</code></pre>
+</li>
+<li>
+<p><code>Node</code> 인터페이스의 <code>innerText</code> 속성을 이용해 렌더링된 텍스트 콘텐츠만 참조하거나 수정할 수 있습니다.</p>
+<pre><code class="language-js">header.innerText = 'oops!';
+console.log(header.innerText); // "oops!"
+</code></pre>
+</li>
+<li>
+<p><code>Node</code> 인터페이스의 <code>textContent</code> 속성은 <code>innerText</code>보다 먼저 정의되어 사용되었으나, 현재 모던 브라우저에서는 동일하게 작동합니다.</p>
+</li>
+</ul>
+<h3>3) 새 요소 만들기</h3>
+<ul>
+<li>
+<p><code>Document</code> 인터페이스의 <code>createElement()</code> 메서드를 이용해 새 요소를 만들 수 있습니다.</p>
+</li>
+<li>
+<p>새로 만들어진 요소는 다른 메서드를 사용해 DOM에 추가하기 전까지는 메모리에만 존재합니다.</p>
+<pre><code class="language-js">const title = document.createElement('h1');
+title.innerText = 'DOM Manupulation Practice';
+console.log(title); // &#x3C;h1>DOM Manupulation Practice&#x3C;/h1>
+</code></pre>
+</li>
+<li>
+<p><code>Document</code> 인터페이스의 <code>createElementFragment()</code> 메서드를 이용해 <code>documentFragment</code>를 생성할 수 있습니다.</p>
+</li>
+<li>
+<p>새로 만들어진 <code>documentFragment</code>는 DOM에 추가되기 전까지 메모리 상에만 존재하므로, 요소를 추가하고 수정하는 것은 리플로우를 발생시키지 않으므로 퍼포먼스를 향상시킬 수 있습니다.</p>
+<pre><code class="language-js">const frag = document.createElementFragement();
+</code></pre>
+</li>
+</ul>
+<h3>4) 요소 추가 및 수정하기</h3>
+<ul>
+<li>
+<p><code>Node</code> 인터페이스의 메서드를 이용해 요소를 추가하거나 수정할 수 있습니다.</p>
+<pre><code class="language-js">const header = document.createElement('header');
+
+// Node.appendChild(): 새로운 노드를 마지막 자녀 노드로 추가할 수 있습니다.
+const title = document.createElement('h1');
+title.innerText = 'DOM Manupulation';
+header.appendChild(title);
+console.log(header); // &#x3C;header>&#x3C;h1>DOM Manupulation&#x3C;/h1>&#x3C;/header>
+
+// Node.insertBefore(): 참조한 자녀 노드 앞에 다른 노드를 추가할 수 있습니다.
+const logo = document.createElement('img');
+logo.src = 'https://someImageSource...';
+header.insertBefore(logo, title);
+console.log(header); // &#x3C;header>&#x3C;img src="..">&#x3C;h1>DOM Manupulation&#x3C;/h1>&#x3C;/header>
+</code></pre>
+</li>
+<li>
+<p><code>ParentNode</code> 믹스인 인터페이스의 <code>append</code> 메서드를 이용할 수도 있습니다.</p>
+<ul>
+<li>노드를 추가하거나 <code>DOMString</code>을 <code>text</code> 노드처럼 추가할 수 있습니다.</li>
+<li>여러 개의 노드를 한 번에 추가할 수 있습니다.</li>
+</ul>
+<pre><code class="language-js">const parent = document.createElement('div');
+const h1 = document.createElement('h1');
+const h2 = document.createElement('h2');
+
+parent.append('practice', h1, h2);
+
+console.log(parent.innerHTML); // "practice&#x3C;h1>&#x3C;/h1>&#x3C;h2>&#x3C;/h2>"
+</code></pre>
+</li>
+<li>
+<p><code>ChildNode</code> 인터페이스의 메서드를 이용해 참조된 자녀노드에 대해 DOM 조작을 할  수 있습니다.</p>
+</li>
+<li>
+<p><code>ChildNode</code> 인터페이스는 믹스인(mixin)으로, 부모를 가질 수 있는 <code>Node</code>객체에 메서드를 제공합니다.</p>
+<pre><code class="language-js">const parent = document.createElement('div');
+const child = document.createElement('h2');
+parent.appendChild(child);
+console.log(parent); // &#x3C;div>&#x3C;h2>&#x3C;/h2>&#x3C;/div>
+
+// before(): 해당 노드의 앞에 다른 노드를 삽입합니다.
+const h1 = document.createElement('h1');
+child.before(h1);
+console.log(parent); // &#x3C;div>&#x3C;h1>&#x3C;/h1>&#x3C;h2>&#x3C;/h2>&#x3C;/div>
+
+// after(): 해당 노드의 앞에 다른 노드를 삽입합니다.
+const h3 = document.createElement('h3');
+child.after(h3);
+console.log(parent); // &#x3C;div>&#x3C;h1>&#x3C;/h1>&#x3C;h2>&#x3C;/h2>&#x3C;h3>&#x3C;/h3>&#x3C;/div>
+
+// replaceWith(): 해당 노드를 다른 요소 노드 또는 텍스트 노드로 대체합니다.
+const p = document.createElement('p');
+child.replaceWith(p);
+console.log(parent); // &#x3C;div>&#x3C;h1>&#x3C;/h1>&#x3C;p>&#x3C;/p>&#x3C;h3>&#x3C;/h3>&#x3C;/div>
+
+//remove(): 참조된 자녀 노드를 자식 목록에서 제거합니다.
+p.remove();
+console.log(parent); // &#x3C;div>&#x3C;h1>&#x3C;/h1>&#x3C;h3>&#x3C;/h3>&#x3C;/div>
+</code></pre>
+</li>
+<li>
+<p>이외에도 DOM 인터페이스의 다양한 속성과 메서드를 이용해 DOM 조작을 할 수 있습니다.</p>
+</li>
+<li>
+<p>더 알아보려면 MDN에서 각 DOM 인터페이스를 검색하거나, W3C의 <a href="https://www.w3.org/TR/dom41/">DOM  표준 문서</a>를 참고할 수 있습니다.</p>
+</li>
+</ul>
+<hr>
+<h3>참고자료</h3>
+<ul>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/API/Document_Object_Model/%EC%86%8C%EA%B0%9C">MDN - DOM 소개</a></li>
+<li><a href="https://www.w3.org/TR/dom41/">W3C - DOM 4.1</a></li>
+<li><a href="https://tutorialpost.apptilus.com/code/posts/js/w02-script-tag/">TuturialPost - JavaScript 웹개발과 DOM</a></li>
+</ul>
+</div></main></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"title":"DOM API와 DOM 인터페이스","date":"2021-02-06","content":"\u003ch2\u003e들어가며\u003c/h2\u003e\n\u003cp\u003e자바스크립트는 동적인 웹페이지를 구현하기 위해 만들어진 스크립트 언어입니다. 동적인 웹페이지를 구현하는 것의 대부분은 문서의 구조나 스타일, 콘텐츠를 변경하는 것이며 이는 DOM(Document Object Model) 조작을 통해 가능합니다. 그렇다면 DOM은 무엇이고 DOM을 조작한다는 것은 어떤 의미인지, 그리고 기본적인 DOM 조작은 어떤 방법들이 있는지 알아보았습니다.\u003c/p\u003e\n\u003ch2\u003eTL; DR\u003c/h2\u003e\n\u003cul\u003e\n\u003cli\u003eDOM은 HTML 문서에 접근하고 조작하기 위한 Web API\u003c/li\u003e\n\u003cli\u003eDOM의 객체들은 DOM 인터페이스를 상속해 속성과 메서드를 구현\u003c/li\u003e\n\u003cli\u003eDOM 인터페이스의 속성 및 메서드를 사용해 DOM에 접근 및 조작 가능\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2\u003e1. DOM이란?\u003c/h2\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e브라우저의 맥락에서 자바스크립트는 핵심 언어인 \u003ca href=\"https://www.ecma-international.org/publications-and-standards/standards/ecma-262/\"\u003eECMA스크립트\u003c/a\u003e와 다양한 기능을 제공하는 \u003ca href=\"https://developer.mozilla.org/ko/docs/Web/API\"\u003eWeb API\u003c/a\u003e로 구성되어 있으며, DOM은 대표적인 Web API 중 하나입니다.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003eHTML, XML 문서의 \u003cstrong\u003e프로그래밍 인터페이스\u003c/strong\u003e로, 문서의 객체를 나타내고 상호작용할 수 있게 합니다.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003eDOM은 문서의 내용과 구조를 노드 트리로 표현하고, 스크립트 언어는 DOM을 통해 문서의 구조, 스타일, 콘텐츠 등을 변경할 수 있습니다.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e주로 자바스크립트에 의해 사용되지만, 플랫폼 중립적이므로 파이썬 등의 다른 언어를 통해 사용할 수도 있습니다.\u003c/p\u003e\n\u003cblockquote\u003e\n\u003cp\u003eDOM 표준 규격은 W3C, WHATWG에서 각각 발표하고 있었으나, 앞으로 단일 버전으로 개발될 예정입니다.\u003c/p\u003e\n\u003cp\u003e\u003ca href=\"https://zdnet.co.kr/view/?no=20190531184644\"\u003eZDNet 관련기사\u003c/a\u003e\u003c/p\u003e\n\u003c/blockquote\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2\u003e2. DOM 인터페이스\u003c/h2\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003eDOM은 HTML/XML 문서를 다룰 수 있도록 \u003ca href=\"https://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/DOM3-Core.html#introduction-ID-E7C30826\"\u003eDOM 인터페이스\u003c/a\u003e를 명시하고 있습니다.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003eDOM 인터페이스는 일종의 추상화된 기본 클래스로, 각각의 속성(Attributes)과 메서드를 가지고 있습니다.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e대표적으로 \u003ca href=\"https://developer.mozilla.org/ko/docs/Web/API/EventTarget\"\u003eEventTarget\u003c/a\u003e, \u003ca href=\"https://developer.mozilla.org/ko/docs/Web/API/Node\"\u003eNode\u003c/a\u003e, \u003ca href=\"https://developer.mozilla.org/ko/docs/Web/API/HTMLElement\"\u003eHTMLElement\u003c/a\u003e 등이 있습니다.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003eDOM의 객체들은 인터페이스를 상속받아 구현하며, addEventListener, appendChild 등 DOM 조작을 위해 사용하는 메서드들은 해당 객체가 상속받은 DOM 인터페이스의 메서드를 사용하는 것이라고 할 수 있습니다.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003eMDN 문서에서 특정 속성이나 메서드를 검색하면, 앞에 인터페이스를 정의하는 것을 볼 수 있습니다.\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eex: \u003ca href=\"https://developer.mozilla.org/ko/docs/Web/API/Element/classList\"\u003eElement.classList\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e아래 그림과 같이 계층적 구조를 가지고 있으며, 하위 인터페이스는 상위 인터페이스를 상속합니다.\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"../assets/DOM-API/html-dom-hierarchy.svg\" alt=\"Hierarchy of interfaces for HTML elements\"\u003e\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e개발자도구 - Elements - Properties 탭에서 해당 노드 객체가 상속받은 인터페이스와 각각의 속성 및 메서드를 확인할 수 있습니다.\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003cimg src=\"../assets/DOM-API/image-20210208003644007.png\" alt=\"image-20210208003644007\"\u003e\u003c/p\u003e\n\u003ch2\u003e3. DOM 조작\u003c/h2\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003eDOM 조작은 문서의 요소들이 구현하고 있는 인터페이스의 속성과 메서드를 이용해 가능합니다.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e기본적으로 DOM 요소를 생성/참조/수정/삭제하는 방법에 대해 작성하였습니다.\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3\u003e1) 요소 접근 및 선택\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eDocument\u003c/code\u003e 인터페이스의 메서드를 이용해 노드에 접근하고 참조할 수 있습니다.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-js\"\u003e// Document.getElementById(): 해당 id 속성을 가진 요소를 반환합니다.\r\n// 웹 호환성을 위해 일반 요소에서 사용할 수 없으며, ParentNode에도 구현되어있지 않습니다.\r\n// 엄밀히는 NoneElementParentNode 인터페이스이며 Document, DocumentFragment가 구현합니다.\r\nconst app = document.getElementById('app');\r\n\r\n// Document.getElementByClassName(): 해당 class 속성을 가진 요소를 NodeList 객체로 묶어 반환합니다.\r\nconst searchResult = document.getElementByClassName('search-result');\r\n\r\n// Document.getElementByTagName(): 해당 tagName 속성을 가진 요소를 NodeList 객체로 묶어 반환합니다.\r\nconst header = document.getElementByTagName('header');\n\u003c/code\u003e\u003c/pre\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eParentNode\u003c/code\u003e  믹스인 인터페이스의 메서드를 이용하는 방법도 있습니다.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eParentNode\u003c/code\u003e는 \u003ccode\u003eElement\u003c/code\u003e, \u003ccode\u003eDocument\u003c/code\u003e, \u003ccode\u003eDocumentFragment\u003c/code\u003e 인터페이스에서 구현됩니다.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-js\"\u003e// querySelector: CSS 선택자를 이용하여 일치하는 요소 중 첫번째 요소를 반환합니다.\r\nconst headerLogo = document.querySelector('header.logo');\r\n\r\n// querySelectorAll: CSS 선택자를 이용하여 일치하는 모든 요소를 NodeList로 반환합니다. \r\nconst activeList = document.querySelectorAll('.active');\n\u003c/code\u003e\u003c/pre\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e또는 \u003ccode\u003eNode\u003c/code\u003e 인터페이스의 속성을 통해 요소 접근 및 선택이 가능합니다.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-js\"\u003e// 해당하는 노드가 없으면 null을 반환합니다.\r\n// text 및 comment 또한 노드이므로, 해당 속성을 통해 선택할 수 있으므로,\r\n// 요소만 선택하고자 할 때는 중간에 Element를 포함한 메서드를 사용합니다.\r\n\r\nNode.parentNode             // 현재 요소노드의 부모 노드\r\nNode.previousSibling        // 이전 형제 노드\r\nNode.previousElementSibling // 이전 형제 요소 노드\r\nNode.nextSibling            // 다음 형제 노드\r\nNode.nextElementSibling     // 다음 형제 요소 노드\r\nNode.firstChild             // 현재 요소의 첫번째 자식 노드\r\nNode.firstElementChild      // 현재 요소의 첫번째 자식 요소 노드\r\nNode.lastChild              // 현재 요소의 마지막 자식 노드\r\nNode.lastElementChild       // 현재 요소의 마지막 자식 요소 노드\n\u003c/code\u003e\u003c/pre\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3\u003e2) 콘텐츠 참조 및 수정\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eElement\u003c/code\u003e 인터페이스의 \u003ccode\u003einnerHTML\u003c/code\u003e 속성을 이용해 콘텐츠를 참조하고 수정할 수 있습니다.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-js\"\u003econst header = document.createElement('header');\r\n- `innerText`는 HTML요소를 제거한 순수한 문자열만을 반환합니다.\r\n// Element.innerHTML: 요소에 포함된 마크업을 가져오거나 설정합니다.\r\nheader.innerHTML = '\u0026#x3C;h1\u003ehello world\u0026#x3C;/h1\u003e';\r\nconsole.log(header.innerHTML) // \"\u0026#x3C;h1\u003ehello world\u0026#x3C;/h1\u003e\"\r\n\r\n// Element.innerText: \r\nconsole.log(header.innerText) // \"hello world\"\n\u003c/code\u003e\u003c/pre\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eNode\u003c/code\u003e 인터페이스의 \u003ccode\u003einnerText\u003c/code\u003e 속성을 이용해 렌더링된 텍스트 콘텐츠만 참조하거나 수정할 수 있습니다.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-js\"\u003eheader.innerText = 'oops!';\r\nconsole.log(header.innerText); // \"oops!\"\n\u003c/code\u003e\u003c/pre\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eNode\u003c/code\u003e 인터페이스의 \u003ccode\u003etextContent\u003c/code\u003e 속성은 \u003ccode\u003einnerText\u003c/code\u003e보다 먼저 정의되어 사용되었으나, 현재 모던 브라우저에서는 동일하게 작동합니다.\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3\u003e3) 새 요소 만들기\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eDocument\u003c/code\u003e 인터페이스의 \u003ccode\u003ecreateElement()\u003c/code\u003e 메서드를 이용해 새 요소를 만들 수 있습니다.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e새로 만들어진 요소는 다른 메서드를 사용해 DOM에 추가하기 전까지는 메모리에만 존재합니다.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-js\"\u003econst title = document.createElement('h1');\r\ntitle.innerText = 'DOM Manupulation Practice';\r\nconsole.log(title); // \u0026#x3C;h1\u003eDOM Manupulation Practice\u0026#x3C;/h1\u003e\n\u003c/code\u003e\u003c/pre\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eDocument\u003c/code\u003e 인터페이스의 \u003ccode\u003ecreateElementFragment()\u003c/code\u003e 메서드를 이용해 \u003ccode\u003edocumentFragment\u003c/code\u003e를 생성할 수 있습니다.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e새로 만들어진 \u003ccode\u003edocumentFragment\u003c/code\u003e는 DOM에 추가되기 전까지 메모리 상에만 존재하므로, 요소를 추가하고 수정하는 것은 리플로우를 발생시키지 않으므로 퍼포먼스를 향상시킬 수 있습니다.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-js\"\u003econst frag = document.createElementFragement();\n\u003c/code\u003e\u003c/pre\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3\u003e4) 요소 추가 및 수정하기\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eNode\u003c/code\u003e 인터페이스의 메서드를 이용해 요소를 추가하거나 수정할 수 있습니다.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-js\"\u003econst header = document.createElement('header');\r\n\r\n// Node.appendChild(): 새로운 노드를 마지막 자녀 노드로 추가할 수 있습니다.\r\nconst title = document.createElement('h1');\r\ntitle.innerText = 'DOM Manupulation';\r\nheader.appendChild(title);\r\nconsole.log(header); // \u0026#x3C;header\u003e\u0026#x3C;h1\u003eDOM Manupulation\u0026#x3C;/h1\u003e\u0026#x3C;/header\u003e\r\n\r\n// Node.insertBefore(): 참조한 자녀 노드 앞에 다른 노드를 추가할 수 있습니다.\r\nconst logo = document.createElement('img');\r\nlogo.src = 'https://someImageSource...';\r\nheader.insertBefore(logo, title);\r\nconsole.log(header); // \u0026#x3C;header\u003e\u0026#x3C;img src=\"..\"\u003e\u0026#x3C;h1\u003eDOM Manupulation\u0026#x3C;/h1\u003e\u0026#x3C;/header\u003e\n\u003c/code\u003e\u003c/pre\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eParentNode\u003c/code\u003e 믹스인 인터페이스의 \u003ccode\u003eappend\u003c/code\u003e 메서드를 이용할 수도 있습니다.\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e노드를 추가하거나 \u003ccode\u003eDOMString\u003c/code\u003e을 \u003ccode\u003etext\u003c/code\u003e 노드처럼 추가할 수 있습니다.\u003c/li\u003e\n\u003cli\u003e여러 개의 노드를 한 번에 추가할 수 있습니다.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cpre\u003e\u003ccode class=\"language-js\"\u003econst parent = document.createElement('div');\r\nconst h1 = document.createElement('h1');\r\nconst h2 = document.createElement('h2');\r\n\r\nparent.append('practice', h1, h2);\r\n\r\nconsole.log(parent.innerHTML); // \"practice\u0026#x3C;h1\u003e\u0026#x3C;/h1\u003e\u0026#x3C;h2\u003e\u0026#x3C;/h2\u003e\"\n\u003c/code\u003e\u003c/pre\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eChildNode\u003c/code\u003e 인터페이스의 메서드를 이용해 참조된 자녀노드에 대해 DOM 조작을 할  수 있습니다.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ccode\u003eChildNode\u003c/code\u003e 인터페이스는 믹스인(mixin)으로, 부모를 가질 수 있는 \u003ccode\u003eNode\u003c/code\u003e객체에 메서드를 제공합니다.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-js\"\u003econst parent = document.createElement('div');\r\nconst child = document.createElement('h2');\r\nparent.appendChild(child);\r\nconsole.log(parent); // \u0026#x3C;div\u003e\u0026#x3C;h2\u003e\u0026#x3C;/h2\u003e\u0026#x3C;/div\u003e\r\n\r\n// before(): 해당 노드의 앞에 다른 노드를 삽입합니다.\r\nconst h1 = document.createElement('h1');\r\nchild.before(h1);\r\nconsole.log(parent); // \u0026#x3C;div\u003e\u0026#x3C;h1\u003e\u0026#x3C;/h1\u003e\u0026#x3C;h2\u003e\u0026#x3C;/h2\u003e\u0026#x3C;/div\u003e\r\n\r\n// after(): 해당 노드의 앞에 다른 노드를 삽입합니다.\r\nconst h3 = document.createElement('h3');\r\nchild.after(h3);\r\nconsole.log(parent); // \u0026#x3C;div\u003e\u0026#x3C;h1\u003e\u0026#x3C;/h1\u003e\u0026#x3C;h2\u003e\u0026#x3C;/h2\u003e\u0026#x3C;h3\u003e\u0026#x3C;/h3\u003e\u0026#x3C;/div\u003e\r\n\r\n// replaceWith(): 해당 노드를 다른 요소 노드 또는 텍스트 노드로 대체합니다.\r\nconst p = document.createElement('p');\r\nchild.replaceWith(p);\r\nconsole.log(parent); // \u0026#x3C;div\u003e\u0026#x3C;h1\u003e\u0026#x3C;/h1\u003e\u0026#x3C;p\u003e\u0026#x3C;/p\u003e\u0026#x3C;h3\u003e\u0026#x3C;/h3\u003e\u0026#x3C;/div\u003e\r\n\r\n//remove(): 참조된 자녀 노드를 자식 목록에서 제거합니다.\r\np.remove();\r\nconsole.log(parent); // \u0026#x3C;div\u003e\u0026#x3C;h1\u003e\u0026#x3C;/h1\u003e\u0026#x3C;h3\u003e\u0026#x3C;/h3\u003e\u0026#x3C;/div\u003e\n\u003c/code\u003e\u003c/pre\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e이외에도 DOM 인터페이스의 다양한 속성과 메서드를 이용해 DOM 조작을 할 수 있습니다.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e더 알아보려면 MDN에서 각 DOM 인터페이스를 검색하거나, W3C의 \u003ca href=\"https://www.w3.org/TR/dom41/\"\u003eDOM  표준 문서\u003c/a\u003e를 참고할 수 있습니다.\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003chr\u003e\n\u003ch3\u003e참고자료\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\"https://developer.mozilla.org/ko/docs/Web/API/Document_Object_Model/%EC%86%8C%EA%B0%9C\"\u003eMDN - DOM 소개\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://www.w3.org/TR/dom41/\"\u003eW3C - DOM 4.1\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://tutorialpost.apptilus.com/code/posts/js/w02-script-tag/\"\u003eTuturialPost - JavaScript 웹개발과 DOM\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n","slug":"DOM-API"}},"__N_SSG":true},"page":"/posts/[slug]","query":{"slug":"DOM-API"},"buildId":"Lc7vkU_0Rn-jtel3gNYie","nextExport":false,"isFallback":false,"gsp":true}</script><script nomodule="" src="/_next/static/chunks/polyfills-8f31809deb7932dd0187.js"></script><script src="/_next/static/chunks/main-f0ef828955f203add958.js" async=""></script><script src="/_next/static/chunks/webpack-50bee04d1dc61f8adf5b.js" async=""></script><script src="/_next/static/chunks/framework.4b1beca48388539e3889.js" async=""></script><script src="/_next/static/chunks/3a3f75626beeb6412aba5e6564dc5dac4d3e7fd6.3b920c3faddc10506db9.js" async=""></script><script src="/_next/static/chunks/pages/_app-02d64bcb1172d77f6e38.js" async=""></script><script src="/_next/static/chunks/pages/posts/%5Bslug%5D-a7c043380c6badf7f3a5.js" async=""></script><script src="/_next/static/Lc7vkU_0Rn-jtel3gNYie/_buildManifest.js" async=""></script><script src="/_next/static/Lc7vkU_0Rn-jtel3gNYie/_ssgManifest.js" async=""></script></body></html>
