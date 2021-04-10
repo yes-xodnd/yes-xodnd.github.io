@@ -9,10 +9,9 @@ function Blog({ allPosts }) {
     </div>
   )
 }
-
 export default Blog
 
-
+// static
 export function getStaticProps() {
   const allPosts = getAllPosts(['slug', 'title', 'date', 'tags'])
   
