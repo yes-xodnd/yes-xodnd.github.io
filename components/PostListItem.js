@@ -23,8 +23,13 @@ const Tags = ({ tags }) => (
 
 // style
 const ListItem = styled.li`
-  padding: 1rem;
+  padding: 1rem 2rem;
   border-bottom: 1px solid ${({ theme }) => theme.color.lightgrey };
+  transition: 200ms;
+
+  &:hover {
+    box-shadow: 5px 5px 5px lightgrey;
+  }
 `
 
 const Title = styled.a`
