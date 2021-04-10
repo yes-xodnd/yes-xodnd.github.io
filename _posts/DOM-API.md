@@ -1,11 +1,9 @@
 ---
 title: DOM API와 DOM 인터페이스
 date: 2021-02-06
-author: yes-xodnd
-tags: JavaScript
+tags: JavaScript WebAPI
+published: true
 ---
-
-## 들어가며
 
 자바스크립트는 동적인 웹페이지를 구현하기 위해 만들어진 스크립트 언어입니다. 동적인 웹페이지를 구현하는 것의 대부분은 문서의 구조나 스타일, 콘텐츠를 변경하는 것이며 이는 DOM(Document Object Model) 조작을 통해 가능합니다. 그렇다면 DOM은 무엇이고 DOM을 조작한다는 것은 어떤 의미인지, 그리고 기본적인 DOM 조작은 어떤 방법들이 있는지 알아보았습니다.
 
@@ -21,37 +19,31 @@ tags: JavaScript
 
 ## 1. DOM이란?
 
-- 브라우저의 맥락에서 자바스크립트는 핵심 언어인 [ECMA스크립트](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/)와 다양한 기능을 제공하는 [Web API](https://developer.mozilla.org/ko/docs/Web/API)로 구성되어 있으며, DOM은 대표적인 Web API 중 하나입니다.
+브라우저의 맥락에서 자바스크립트는 핵심 언어인 [ECMA스크립트](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/)와 다양한 기능을 제공하는 [Web API](https://developer.mozilla.org/ko/docs/Web/API)로 구성되어 있으며, DOM은 대표적인 Web API 중 하나입니다. 
 
-- HTML, XML 문서의 **프로그래밍 인터페이스**로, 문서의 객체를 나타내고 상호작용할 수 있게 합니다.
+HTML, XML 문서의 **프로그래밍 인터페이스**로, 문서의 객체를 나타내고 상호작용할 수 있게 합니다. DOM은 문서의 내용과 구조를 노드 트리로 표현하고, 스크립트 언어는 DOM을 통해 문서의 구조, 스타일, 콘텐츠 등을 변경할 수 있습니다.
 
-- DOM은 문서의 내용과 구조를 노드 트리로 표현하고, 스크립트 언어는 DOM을 통해 문서의 구조, 스타일, 콘텐츠 등을 변경할 수 있습니다.
+주로 자바스크립트에 의해 사용되지만, 플랫폼 중립적이므로 파이썬 등의 다른 언어를 통해 사용할 수도 있습니다.
 
-- 주로 자바스크립트에 의해 사용되지만, 플랫폼 중립적이므로 파이썬 등의 다른 언어를 통해 사용할 수도 있습니다.
-
-  > DOM 표준 규격은 W3C, WHATWG에서 각각 발표하고 있었으나, 앞으로 단일 버전으로 개발될 예정입니다. 
-  >
-  > [ZDNet 관련기사](https://zdnet.co.kr/view/?no=20190531184644)
+> DOM 표준 규격은 W3C, WHATWG에서 각각 발표하고 있었으나, 앞으로 단일 버전으로 개발될 예정입니다. 
+>
+> [ZDNet 관련기사](https://zdnet.co.kr/view/?no=20190531184644)
 
 
 
 ## 2. DOM 인터페이스
 
-- DOM은 HTML/XML 문서를 다룰 수 있도록 [DOM 인터페이스](https://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/DOM3-Core.html#introduction-ID-E7C30826)를 명시하고 있습니다.
-
-- DOM 인터페이스는 일종의 추상화된 기본 클래스로, 각각의 속성(Attributes)과 메서드를 가지고 있습니다.
-
-- 대표적으로 [EventTarget](https://developer.mozilla.org/ko/docs/Web/API/EventTarget), [Node](https://developer.mozilla.org/ko/docs/Web/API/Node), [HTMLElement](https://developer.mozilla.org/ko/docs/Web/API/HTMLElement) 등이 있습니다.
+DOM은 HTML/XML 문서를 다룰 수 있도록 [DOM 인터페이스](https://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/DOM3-Core.html#introduction-ID-E7C30826)를 명시하고 있습니다.
+DOM 인터페이스는 일종의 추상화된 기본 클래스로, 각각의 속성(Attributes)과 메서드를 가지고 있습니다.
+대표적으로 [EventTarget](https://developer.mozilla.org/ko/docs/Web/API/EventTarget), [Node](https://developer.mozilla.org/ko/docs/Web/API/Node), [HTMLElement](https://developer.mozilla.org/ko/docs/Web/API/HTMLElement) 등이 있습니다.
 
 - DOM의 객체들은 인터페이스를 상속받아 구현하며, addEventListener, appendChild 등 DOM 조작을 위해 사용하는 메서드들은 해당 객체가 상속받은 DOM 인터페이스의 메서드를 사용하는 것이라고 할 수 있습니다.
-
 - MDN 문서에서 특정 속성이나 메서드를 검색하면, 앞에 인터페이스를 정의하는 것을 볼 수 있습니다.
 
   - ex: [Element.classList](https://developer.mozilla.org/ko/docs/Web/API/Element/classList)
-
 - 아래 그림과 같이 계층적 구조를 가지고 있으며, 하위 인터페이스는 상위 인터페이스를 상속합니다.
 
-  ![Hierarchy of interfaces for HTML elements](../assets/DOM-API/html-dom-hierarchy.svg)
+![Hierarchy of interfaces for HTML elements](../assets/DOM-API/html-dom-hierarchy.svg)
 
 - 개발자도구 - Elements - Properties 탭에서 해당 노드 객체가 상속받은 인터페이스와 각각의 속성 및 메서드를 확인할 수 있습니다.
 
@@ -61,11 +53,10 @@ tags: JavaScript
 
 ## 3. DOM 조작
 
-- DOM 조작은 문서의 요소들이 구현하고 있는 인터페이스의 속성과 메서드를 이용해 가능합니다.
+DOM 조작은 문서의 요소들이 구현하고 있는 인터페이스의 속성과 메서드를 이용해 가능합니다.
+기본적으로 DOM 요소를 생성/참조/수정/삭제하는 방법에 대해 작성하였습니다.
 
-- 기본적으로 DOM 요소를 생성/참조/수정/삭제하는 방법에 대해 작성하였습니다.
 
-  
 
 
 ### 1) 요소 접근 및 선택
