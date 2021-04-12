@@ -7,3 +7,4 @@ node_modules/
 # posts
 _posts/
 public/
+out/
