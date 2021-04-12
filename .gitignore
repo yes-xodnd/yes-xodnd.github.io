@@ -3,8 +3,8 @@ node_modules/
 
 # next.js
 .next/
+out/
 
 # posts
 _posts/
 public/
-out/
