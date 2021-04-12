@@ -1,5 +1,3 @@
-
-
 ## 초기 설정
 
 `create-next-app`을 사용하지 않고, 필요한 요소들을 하나씩 manual setup을 해보기로 했습니다.
@@ -64,11 +62,11 @@ npm run dev
 
 터미널에 ready 표시와 함께 출력되는 url을 통해 작성한 Next 앱을 확인할 수 있습니다.
 
-![image-20210323190826926](개발일지.assets/image-20210323190826926.png)
+![image-20210323190826926](dev-log.assets/image-20210323190826926.png)
 
 브라우저에서 해당 주소로 접속하면 `build page: /` 가 출력되고, 해당 컴포넌트를 컴파일해 화면에 보여줍니다. 
 
-![image-20210323205841804](개발일지.assets/image-20210323205841804.png)
+![image-20210323205841804](dev-log.assets/image-20210323205841804.png)
 
 ## 배포
 
@@ -162,7 +160,8 @@ Next 공식 홈페이지의 [blog-starter](https://github.com/vercel/next.js/tre
 npm install remark remark-html
 ```
 
-
+`gray-matter`를 이용해 md 문서를 파싱한 반환값의 `content` 값을 아래 `markdownToHtml` 함수에 전달합니다. 
+html 요소로 변환된 문자열 값이 반환됩니다.
 
 ``` js
 // lib/markdownToHtml.js
@@ -171,6 +170,29 @@ import html from 'remark-html'
 
 export default async function markdownToHtml(markdown) {
   const result = await remark().use(html).process(markdown)
+  return result.toString()
+}
+```
+
+
+
+## 문서 내 코드블록 파싱 및 하이라이트
+
+기술 블로그이기 때문에, 마크다운 문서 내에 많은 코드를 작성하게 됩니다.
+
+이를 읽기 좋게 하이라이트 하려면 우선 코드블록 내 문자열을 분류하고, 스타일을 적용할 수 있도록 특정 태그로 감싸줍니다. 여러 라이브러리를 이용할 수 있으나, 코드 하이라이트 라이브러리 `prism`의 `remark` 호환버전인 `remark-prism`을 이용하였습니다.
+
+``` js
+// lib/markdownToHtml.js
+import remark from 'remark'
+import html from 'remark-html'
+import prism from 'remark-prism'
+
+export default async function markdownToHtml(markdown) {
+  const result = await remark()
+  .use(html)
+  .use(prism)
+  .process(markdown)
   return result.toString()
 }
 ```
