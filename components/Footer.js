@@ -14,8 +14,7 @@ export default function Footer() {
 
 const Container = styled.footer`
   padding: 1rem 0;
-  /* border-top: 1px solid lightgray; */
-`
+  /* border-top: 1px solid lightgray; */`
 
 const Content = styled.div`
   margin: auto;
