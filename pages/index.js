@@ -4,9 +4,7 @@ import PostList from '../components/PostList'
 function Blog({ allPosts }) {
 
   return (
-    <div>
-      <PostList posts={allPosts} />
-    </div>
+    <PostList posts={allPosts} />
   )
 }
 export default Blog
