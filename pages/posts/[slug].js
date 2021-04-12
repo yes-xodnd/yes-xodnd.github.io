@@ -1,14 +1,18 @@
+import styled from 'styled-components'
 import { getAllPosts, getPostBySlug } from '../../lib/api'
 import markdownToHtml from '../../lib/markdown'
-import styled from 'styled-components'
-import codeHighlight from '../../styles/codeHighlight'
+import dateFormat from '../../lib/dateFormat'
+import codeHighlight from '../../style/codeHighlight'
 
 export default function Post({ post }) {
   return (
-    <>
-      <h1>{ post.title }</h1>
+    <Container>
+      <Header>
+        <Title>{ post.title }</Title>
+        <Date>{ dateFormat(post.date) }</Date>
+      </Header>
       <Content dangerouslySetInnerHTML={{ __html: post.content }} />
-    </>
+    </Container>
   )
 }
 
@@ -48,7 +52,28 @@ export async function getStaticPaths() {
 }
 
 // style
-const Content = styled.main`
+const Container = styled.section`
+  padding: 0 2rem;
+`
+
+const Header = styled.div`
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  padding: 1rem 0;
+`
+
+const Title = styled.h1`
+  margin: 0;
+  margin-bottom: 1rem;
+  font-size: ${({ theme }) => theme.font.lg };
+`
+
+const Date = styled.div`
+  font-size: ${({ theme }) => theme.font.sm };
+  /* text-align: right; */
+`
+
+const Content = styled.article`
   line-height: 1.8rem;
 
   a {
@@ -65,7 +90,7 @@ const Content = styled.main`
   }
   img {
     display: block;
-    width: 60%;
+    width: 90%;
     margin: 2rem auto;
     padding: 1rem;
     border: 1px solid ${({ theme }) => theme.color.lightgrey }
