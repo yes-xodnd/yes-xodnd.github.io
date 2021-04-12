@@ -7,14 +7,12 @@ import matter from 'gray-matter'
  * @typedef {Object} Post
  * @property {string} slug - file name without .md
  * @property {string} title - title
- * @property {string} date - The date as JSON
+ * @property {string} date - date object as JSON
  * @property {string[]} tags - tags
  * @property {string} content - content in markdown format
  */
 
 const POSTS_PATH = join(process.cwd(), '_posts')
-let posts = {}
-let is_parsed = false
 
 /**
  * 전체 post 목록을 조회합니다. 
@@ -24,15 +22,11 @@ let is_parsed = false
  * @returns {Post[]} Array of posts sorted in descending order
  */
 export function getAllPosts(fields = []) {
-  if (!is_parsed) {
-    posts = parseAllPosts()
-    console.log(`[api] parse all posts \n${Object.keys(posts)}\n`)
-    is_parsed = true
-  }
+  const posts = parseAllPosts()
 
   return Object
     .keys(posts)
-    .map(slug => getPostBySlug(slug, fields))
+    .map(slug => filterPostByFields(posts[slug], fields))
     .sort((post1, post2) => post1.date > post2.date ? -1 : 1 )
 }
 
@@ -45,17 +39,14 @@ export function getAllPosts(fields = []) {
  * @returns 
  */
 export function getPostBySlug(slug, fields = []) {
-  const post = posts[slug] || parsePostBySlug(slug)
-
-  if (!post) {
-    throw new Error(`[api] 존재하지 않는 slug입니다 \n${slug}\n`)
-  }
+  console.log(`\n [api] getPostBySlug ${slug}\n`)
+  const post = parsePostBySlug(slug)
 
   return filterPostByFields(post, fields)
 }
 
 /**
- * 포스트 정보에서 선택한 필드만 필터링합니다.
+ * 포스트 정보에서 선택한 필드만 필터링해 반환합니다.
  * 
  * @param {Post} post 
  * @param {string[]} fields 
@@ -64,13 +55,14 @@ export function getPostBySlug(slug, fields = []) {
 function filterPostByFields(post, fields = []) {
   const fieldsDefault = [ 'slug', 'date' ]
   const fieldSet = new Set([ ...fields, ...fieldsDefault ])
-  let postData = {}
+  const postData = {}
 
   fieldSet.forEach(field => {
     if (post[field]) {
       postData[field] = post[field]
     }
   })
+
   return postData
 }
 
@@ -87,16 +79,19 @@ function filterPostByFields(post, fields = []) {
     .map(fileName => fileName.slice(0, -3))
 
   if (slugs.length === 0) {
-    console.error(`[api] 디렉토리에 마크다운 파일이 없습니다. \n${POSTS_PATH}\n`)
+    console.error(`\n[api] 디렉토리에 마크다운 파일이 없습니다. \n${POSTS_PATH}\n`)
   }
 
-  slugs.forEach(slug => {
+  for (let i = 0; i < slugs.length; i++) {
+    const slug = slugs[i]
     const post = parsePostBySlug(slug)
 
     if (post.published) { 
       posts[slug] = post 
     }
-  })
+  }
+
+  console.log(`\n[api] parsed all posts \n${Object.keys(posts).length}\n`)
   return posts
 }
 
@@ -107,7 +102,7 @@ function filterPostByFields(post, fields = []) {
  * @returns {Post} Post object
  */
 function parsePostBySlug(slug) {
-  console.log(`[api] parse post\n ${slug}\n`)
+  console.log(`\n[api] parse post\n ${slug}\n`)
 
   const filePath = join(POSTS_PATH, slug + '.md')
   const fileContents = fs.readFileSync(filePath, 'utf-8')
@@ -119,9 +114,9 @@ function parsePostBySlug(slug) {
   return { 
     slug,
     title,
-    content, 
     date,
     tags,
+    content, 
     published
   }
 }
