@@ -1,35 +1,35 @@
+import { memo } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 import dateFormat from '../lib/dateFormat'
 
-export default function PostItem({ slug, date, title, tags }) {
+function PostListItem({ post }) {
+  const { slug, date, title, tags } = post;
+  
   return (
     <ListItem key={slug}>
       <Date>{ dateFormat(date) }</Date>
-      <Link href={`/posts/${slug}`} >
+      <Link href={'/posts/[slug].js'} as={`/posts/${slug}`} >
         <Title>{ title }</Title>
       </Link>
       <Tags tags={tags} />
     </ListItem>
   )
 }
+export default memo(PostListItem);
 
 // components
 const Tags = ({ tags }) => (
-  <TagWrapper>
+  <TagsContainer>
     { tags.map(tag => <TagBadge key={tag}>{ tag }</TagBadge>)}
-  </TagWrapper>
+  </TagsContainer>
 )
 
 // style
 const ListItem = styled.li`
   padding: 1rem 2rem;
-  border-bottom: 1px solid ${({ theme }) => theme.color.lightgrey };
+  /* border-bottom: 1px solid ${({ theme }) => theme.color.lightgrey }; */
   transition: 200ms;
-
-  &:hover {
-    box-shadow: 5px 5px 5px lightgrey;
-  }
 `
 
 const Title = styled.a`
@@ -49,7 +49,7 @@ const Date = styled.div`
   margin-left: 3px;
 `
 
-const TagWrapper = styled.div`
+const TagsContainer = styled.div`
   display: flex;
   padding: 1rem 0;
 `
