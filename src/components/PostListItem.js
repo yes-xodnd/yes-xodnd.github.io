@@ -28,17 +28,25 @@ const Tags = ({ tags }) => (
 // style
 const ListItem = styled.li`
   padding: 1rem 2rem;
-  /* border-bottom: 1px solid ${({ theme }) => theme.color.lightgrey }; */
   transition: 200ms;
+  border: 1px solid transparent;
+  
+  &:hover {
+    border: 1px solid black;
+
+    a {
+      color: ${({ theme }) => theme.color.primary };
+    }
+  }
 `
 
 const Title = styled.a`
-  font-size: 1.5rem;
+  word-break: keep-all;
+  font-size: ${({ theme }) => theme.font.lg };
   font-weight: bold;
-  transition: 200ms;
-  
+  transition: 150ms;
+
   &:hover {
-    color: ${({ theme }) => theme.color.green };
     cursor: pointer;
   }
 `
@@ -57,15 +65,14 @@ const TagsContainer = styled.div`
 const TagBadge = styled.div`
   margin-right: 0.5rem;
   padding: 0.2rem 0.5rem;
-  border: 1px solid ${({ theme }) => theme.color.lightgrey };
+  border: 1px solid lightgrey;
   border-radius: 5px;
-  background: ${({ theme }) => theme.color.badge };
   font-size: ${({ theme }) => theme.font.sm };
-  transition: 200ms;
+  transition: 100ms;
 
   &:hover {
     cursor: pointer;
-    background: ${({ theme }) => theme.color.green };
+    background: ${({ theme }) => theme.color.primary };
     color: white;
   }
 `
