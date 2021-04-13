@@ -53,13 +53,15 @@ export async function getStaticPaths() {
 
 // style
 const Container = styled.section`
+  margin: auto;
   padding: 0 2rem;
+  max-width: 768px;
 `
 
 const Header = styled.div`
-  border-top: 1px solid lightgrey;
-  border-bottom: 1px solid lightgrey;
-  padding: 1rem 0;
+  border-left: 0.5rem solid ${({ theme }) => theme.color.primary };
+  padding: 0 2rem;
+  margin-bottom: 3rem;
 `
 
 const Title = styled.h1`
@@ -77,7 +79,7 @@ const Content = styled.article`
   line-height: 1.8rem;
 
   a {
-    color: ${({ theme }) => theme.color.blue };
+    color: ${({ theme }) => theme.color.primary };
     text-decoration: none;
     
     &:hover {
@@ -85,7 +87,7 @@ const Content = styled.article`
     }
     
     &:visited {
-      color: ${({ theme }) => theme.color.blue };
+      color: ${({ theme }) => theme.color.primary };
     }
   }
   img {
@@ -96,8 +98,12 @@ const Content = styled.article`
     border: 1px solid ${({ theme }) => theme.color.lightgrey }
   }
   h2 {
+    margin-top: 5rem;
+  }
+  h3 {
     margin-top: 3rem;
   }
+
   code:not([class]) {
     padding: 0.2rem 0.4rem ;
     background-color: ${({ theme }) => theme.color.lightgrey };
@@ -105,8 +111,9 @@ const Content = styled.article`
   }
   blockquote {
     margin: 0;
-    padding: 0.5rem 1rem 0.5rem 3rem;
-    border-left: 3px solid ${({ theme }) => theme.color.green };
+    padding: 0.5rem 2rem 0.5rem;
+    border-left: 3px solid ${({ theme }) => theme.color.primary };
+    border-radius: 3px;
     background: ${({ theme }) => theme.color.lightgrey };
     font-size: ${({ theme }) => theme.font.sm };
   }

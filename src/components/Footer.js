@@ -4,17 +4,18 @@ export default function Footer() {
   return (
     <Container>
       <Content>
-        {/* <a href="https://github.com/yes-xodnd/yes-xodnd.github.io" target="_blank">
-          <div>github</div>
-        </a> */}
+        ⓒ2021 ALL RIGHTS RESERVED
       </Content>
     </Container>
   )
 }
 
 const Container = styled.footer`
-  padding: 1rem 0;
-  /* border-top: 1px solid grey; */
+  padding: 1.5rem 2rem;
+  /* border-top: 1px dashed black; */
+  color: grey;
+  text-align: center;
+  font-size: ${({ theme }) => theme.font.sm };
 `
 
 const Content = styled.div`

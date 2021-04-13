@@ -9,7 +9,6 @@ export default function Layout({ Component, pageProps }) {
     <>
       <Header />
       <Main>
-        <SideBar />
         <Component { ...pageProps } />
       </Main>
       <Footer />
