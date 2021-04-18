@@ -21,8 +21,4 @@ export default function Layout({ Component, pageProps }) {
 const Main = styled.main`
   max-width: 1024px;
   margin: 50px auto 100px;
-  
-  @media screen and (min-width: 1024px) {
-    display: flex;
-  }
 `
