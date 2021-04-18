@@ -11,7 +11,6 @@ export default function Layout({ Component, pageProps }) {
         <Component { ...pageProps } />
       </Main>
       <Footer />
-
       <ButtonScrollUp />
     </>
   )
