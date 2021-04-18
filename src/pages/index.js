@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-function Blog() {
+function Home() {
 
   return (
     <div>
@@ -8,4 +8,4 @@ function Blog() {
     </div>
   )
 }
-export default Blog
+export default Home
