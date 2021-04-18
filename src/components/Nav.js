@@ -10,7 +10,7 @@ export default function Nav() {
           <Link href='/'>HOME</Link>
         </ListItem>
         <ListItem>
-          <Link href='/'>POSTS</Link>
+          <Link href='/posts'>POSTS</Link>
         </ListItem>
       </List>
     </nav>

@@ -1,21 +1,11 @@
-import { getAllPosts } from '../lib/api'
-import PostList from '../components/PostList'
+import Link from 'next/link'
 
-function Blog({ allPosts }) {
+function Home() {
 
   return (
-    <PostList posts={allPosts} />
+    <div>
+      <Link href='/posts'>글 목록</Link>
+    </div>
   )
 }
-export default Blog
-
-// static
-export function getStaticProps() {
-  const allPosts = getAllPosts(['slug', 'title', 'date', 'tags'])
-  
-  return {
-    props: {
-      allPosts
-    }
-  }
-} 
+export default Home
