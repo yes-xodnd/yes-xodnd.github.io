@@ -3,7 +3,7 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import dateFormat from '../lib/dateFormat'
 
-function PostListItem({ post }) {
+function PostListItem({ post, handleClickTag }) {
   const { slug, date, title, tags } = post;
   
   return (
@@ -12,15 +12,15 @@ function PostListItem({ post }) {
       <Link href={'/posts/[slug].js'} as={`/posts/${slug}`} >
         <Title>{ title }</Title>
       </Link>
-      <Tags tags={tags} />
+      <Tags tags={tags} handleClick={handleClickTag} />
     </ListItem>
   )
 }
 export default memo(PostListItem);
 
 // components
-const Tags = ({ tags }) => (
-  <TagsContainer>
+const Tags = ({ tags, handleClick }) => (
+  <TagsContainer onClick={handleClick} >
     { tags.map(tag => <TagBadge key={tag}>{ tag }</TagBadge>)}
   </TagsContainer>
 )

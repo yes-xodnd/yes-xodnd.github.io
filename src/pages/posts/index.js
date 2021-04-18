@@ -24,7 +24,13 @@ function Posts({ allPosts, allTags }) {
       <Category { ...{ allTags, selectedTag, handleClickTag } } />
       <ListContainer>
         <List>
-          { posts.map(post => <PostListItem post={post} key={post.slug} />) }
+          { posts.map(post => 
+            <PostListItem
+              post={post}
+              handleClickTag={handleClickTag}
+              key={post.slug}
+            />)
+          }
         </List>
       </ListContainer>
     </Container>
