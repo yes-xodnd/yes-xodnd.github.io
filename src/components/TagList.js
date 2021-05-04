@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-function Category({ allTags, selectedTag, handleClickTag }) {
+function TagList({ allTags, selectedTag, handleClickTag }) {
 
   return (
     <Container>
@@ -14,7 +14,7 @@ function Category({ allTags, selectedTag, handleClickTag }) {
     </Container>
   )
 }
-export default Category;
+export default TagList;
 
 
 const Container = styled.section`

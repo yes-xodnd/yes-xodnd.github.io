@@ -33,10 +33,6 @@ const ListItem = styled.li`
   
   &:hover {
     border: 1px solid black;
-
-    a {
-      color: ${({ theme }) => theme.color.primary };
-    }
   }
 `
 
@@ -48,6 +44,7 @@ const Title = styled.a`
 
   &:hover {
     cursor: pointer;
+    color: ${({ theme }) => theme.color.primary };
   }
 `
 

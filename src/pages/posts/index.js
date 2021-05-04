@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { useState } from 'react'
 import { getAllPosts } from '../../lib/api'
 import PostListItem from '../../components/PostListItem'
-import Category from '../../components/Category'
+import TagList from '../../components/TagList'
 
 function Posts({ allPosts, allTags }) {
   const [posts, setPosts] = useState(allPosts)
@@ -21,7 +21,7 @@ function Posts({ allPosts, allTags }) {
 
   return (
     <Container>
-      <Category { ...{ allTags, selectedTag, handleClickTag } } />
+      <TagList { ...{ allTags, selectedTag, handleClickTag } } />
       <ListContainer>
         <List>
           { posts.map(post => 
