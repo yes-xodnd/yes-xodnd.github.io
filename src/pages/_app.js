@@ -1,7 +1,8 @@
 import { ThemeProvider } from 'styled-components'
 import GlobalStyle from '../style/GlobalStyle'
 import theme from '../style/theme'
-import Layout from '../components/Layout'
+import Footer from '../components/Footer'
+import Header from '../components/Header'
 
 export default function App({ Component, pageProps }) {
 
@@ -9,7 +10,9 @@ export default function App({ Component, pageProps }) {
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <Layout Component={Component} pageProps={pageProps} />
+        <Header />
+        <Component { ...pageProps } />
+        <Footer />
       </ThemeProvider>
     </>
   )
