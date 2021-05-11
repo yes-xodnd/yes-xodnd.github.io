@@ -1,13 +1,11 @@
 import Link from 'next/link'
 import styled from 'styled-components'
-import Nav from './Nav'
 
 export default function Header() {
   return (
     <Container>
       <Content>
-        <Link href="/">YES-XODND BLOG.</Link>
-        <Nav></Nav>
+        <Link href="/">YES-XODND DEV BLOG.</Link>
       </Content>
     </Container>
   )
