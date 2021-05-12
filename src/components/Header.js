@@ -5,7 +5,12 @@ export default function Header() {
   return (
     <Container>
       <Content>
-        <Link href="/">YES-XODND DEV BLOG.</Link>
+        <Link href="/">
+          <div>
+            YES-XODND <br />
+            DEV BLOG.
+          </div> 
+        </Link>
       </Content>
     </Container>
   )
