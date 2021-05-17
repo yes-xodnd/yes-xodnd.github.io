@@ -59,14 +59,11 @@ const Container = styled.section`
 `
 
 const Header = styled.div`
-  border-left: 0.5rem solid ${({ theme }) => theme.color.primary };
-  padding: 0 2rem;
-  margin-bottom: 3rem;
+  margin: 2rem 0;
 `
 
 const Title = styled.h1`
-  margin: 0;
-  margin-bottom: 1rem;
+  margin: 0 0 1rem;
   font-size: ${({ theme }) => theme.font.lg };
 `
 
@@ -90,6 +87,7 @@ const Content = styled.article`
       color: ${({ theme }) => theme.color.primary };
     }
   }
+
   img {
     display: block;
     width: 90%;
@@ -97,11 +95,17 @@ const Content = styled.article`
     padding: 1rem;
     border: 1px solid ${({ theme }) => theme.color.lightgrey }
   }
+
   h2 {
     margin-top: 5rem;
   }
+
   h3 {
     margin-top: 3rem;
+  }
+
+  ul {
+    padding-left: 1.5rem;
   }
 
   code:not([class]) {
@@ -109,9 +113,10 @@ const Content = styled.article`
     background-color: ${({ theme }) => theme.color.lightgrey };
     border-radius: 3px;
   }
+
   blockquote {
     margin: 0;
-    padding: 0.5rem 2rem 0.5rem;
+    padding: 0.5rem 1.5rem 0.5rem;
     border-left: 3px solid ${({ theme }) => theme.color.primary };
     border-radius: 3px;
     background: ${({ theme }) => theme.color.lightgrey };
