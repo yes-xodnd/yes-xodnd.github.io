@@ -20,8 +20,8 @@ export default memo(PostListItem);
 
 // components
 const Tags = ({ tags, handleClick }) => (
-  <TagsContainer onClick={handleClick} >
-    { tags.map(tag => <TagBadge key={tag}>{ tag }</TagBadge>)}
+  <TagsContainer>
+    { tags.map(tag => <TagBadge key={tag} onClick={handleClick(tag)} >{ tag }</TagBadge>)}
   </TagsContainer>
 )
 
