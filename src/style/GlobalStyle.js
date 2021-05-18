@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+import theme from './theme'
 
 export default createGlobalStyle`
   @media (max-width: 768px) {
@@ -19,6 +20,10 @@ export default createGlobalStyle`
     
     &:visited {
       color: inherit;
+    }
+
+    &:hover {
+      color: ${ theme.color.primary }
     }
   }
 `
