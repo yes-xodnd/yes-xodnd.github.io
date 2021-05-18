@@ -39,7 +39,7 @@ export function getAllPosts(fields = []) {
  * @returns 
  */
 export function getPostBySlug(slug, fields = []) {
-  console.log(`\n [api] getPostBySlug ${slug}\n`)
+  // console.log(`\n [api] getPostBySlug ${slug}\n`)
   const post = parsePostBySlug(slug)
 
   return filterPostByFields(post, fields)
@@ -58,9 +58,7 @@ function filterPostByFields(post, fields = []) {
   const postData = {}
 
   fieldSet.forEach(field => {
-    if (post[field]) {
-      postData[field] = post[field]
-    }
+    if (post[field]) postData[field] = post[field]
   })
 
   return postData
@@ -102,7 +100,7 @@ function filterPostByFields(post, fields = []) {
  * @returns {Post} Post object
  */
 function parsePostBySlug(slug) {
-  console.log(`\n[api] parse post\n ${slug}\n`)
+  // console.log(`\n[api] parse post\n ${slug}\n`)
 
   const filePath = join(POSTS_PATH, slug + '.md')
   const fileContents = fs.readFileSync(filePath, 'utf-8')
