@@ -1,7 +1,16 @@
-// import styled from 'styled-components'
+import styled from 'styled-components'
+import Profile from '../components/Profile'
 
-function Home() {
+export default function Home() {
   return (
-    <div>준비중입니다.</div>
+    <div>
+      <HeaderImage></HeaderImage>
+
+    </div>
   )
 }
+
+const HeaderImage = styled.div`
+  min-height: 100px;
+  background-color: lightgrey;
+`
