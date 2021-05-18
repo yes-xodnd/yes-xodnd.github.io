@@ -35,6 +35,7 @@ export default class MyDocument extends Document {
             <meta charSet="utf-8" />
             <meta name="description" content="yes-xodnd의 기술 블로그입니다."/>
             <meta name="keywords" content="blog, frontend, javascript, css, html" />
+            <script src="https://kit.fontawesome.com/0896a76907.js" crossOrigin="anonymous"></script>
         </Head>
         <body>
             <Main />
