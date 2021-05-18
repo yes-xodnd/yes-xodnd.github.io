@@ -4,15 +4,12 @@ import { getAllPosts } from '../../lib/api'
 import PostListItem from '../../components/PostListItem'
 import TagList from '../../components/TagList'
 import ButtonScrollUp from '../../components/ButtonScrollUp'
-import ButtonToggleTagList from '../../components/ButtonToggleTagList'
 
 function Posts({ allPosts, allTags }) {
   const [ posts, setPosts ] = useState(allPosts)
   const [ selectedTag, setSelectedTag ] = useState('')
-  const [ isVisibleTagList, setVisibleTagList ] = useState(false)
 
-  const handleClickTag = e => {
-    const tag = e.target.innerText
+  const handleClickTag = tag => () => {
     const newSelectedTag = selectedTag === tag ? '' : tag
     setSelectedTag(newSelectedTag)
     setPosts(
@@ -22,16 +19,14 @@ function Posts({ allPosts, allTags }) {
     )
   }
 
-  const toggleVisibleTagList = () => setVisibleTagList(!isVisibleTagList)
-
   return (
     <Container>
       <TagList { ...{ 
         allTags,
         selectedTag,
         handleClickTag,
-        isVisible: isVisibleTagList,
       } } />
+
       <ListContainer>
         <List>
           { posts.map(post => 
@@ -44,7 +39,6 @@ function Posts({ allPosts, allTags }) {
         </List>
       </ListContainer>
 
-      <ButtonToggleTagList handleClick={toggleVisibleTagList} />
       <ButtonScrollUp />
     </Container>
   ) 
@@ -72,8 +66,10 @@ function getAllTags(allPosts) {
       map[tag] = map[tag] ? map[tag] + 1 : 1
     }
   }
-  return Object.entries(map).map(([tagName, count]) => ({ tagName, count }));
-  // return Object.keys(map).sort((a, b) => map[b] - map[a])
+  return Object
+  .entries(map)
+  .map(([tagName, count]) => ({ tagName, count }))
+  .sort((a, b) => b.count - a.count)
 }
 
 // style
@@ -81,17 +77,19 @@ const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 3rem 1rem 0;
+  gap: 1rem;
+  padding: 0;
 
   @media screen and (min-width: 768px) {
     flex-direction: row;
+    justify-content: center;
   }
 `
 
 const ListContainer = styled.section`
   width: 100%;
   max-width: 768px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 `
 
 const List = styled.ul`
