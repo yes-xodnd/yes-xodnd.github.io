@@ -68,7 +68,7 @@ const Header = styled.div`
 
 const Title = styled.h1`
   margin: 0 0 1rem;
-  font-size: ${({ theme }) => theme.font.lg };
+  font-size: ${({ theme }) => theme.font.xl };
   word-break: keep-all;
 `
 
