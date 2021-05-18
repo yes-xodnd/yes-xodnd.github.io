@@ -5,6 +5,8 @@ export default function Header() {
   return (
     <Container>
       <Content>
+        <Link href="/">YES-XODND BLOG</Link>
+
         <Nav>
           <Link href="/">HOME</Link>
           <Link href="/posts">POSTS</Link>
@@ -21,11 +23,15 @@ const Container = styled.header`
 
 const Content = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 
   padding: 1rem;
   margin: auto;
   max-width: 1024px;
+`
+
+const Logo = styled.div`
+  
 `
 
 const Nav = styled.nav`
