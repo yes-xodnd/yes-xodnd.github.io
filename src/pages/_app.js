@@ -3,6 +3,7 @@ import GlobalStyle from '../style/GlobalStyle'
 import theme from '../style/theme'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
+import ButtonScrollUp from '../components/ButtonScrollUp'
 
 export default function App({ Component, pageProps }) {
 
@@ -11,16 +12,13 @@ export default function App({ Component, pageProps }) {
       <GlobalStyle />
       <ThemeProvider theme={theme}>
         <Header />
-        <Main>
+        <main>
           <Component { ...pageProps } />
-        </Main>
+        </main>
         <Footer />
+
+        <ButtonScrollUp />
       </ThemeProvider>
     </>
   )
 }
-
-const Main = styled.main`
-  padding: 2rem 1rem;
-  min-height: 100vh;
-`
