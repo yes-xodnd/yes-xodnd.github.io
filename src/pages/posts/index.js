@@ -74,11 +74,13 @@ function getAllTags(allPosts) {
 
 // style
 const Container = styled.div`
+  padding: 2rem 1rem;
+  min-height: 100vh;
+
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 0;
 
   @media screen and (min-width: 768px) {
     flex-direction: row;
