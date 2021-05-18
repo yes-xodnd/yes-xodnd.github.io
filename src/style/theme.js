@@ -1,6 +1,6 @@
 export default {
   color: {
-    primary: 'cornflowerblue',
+    primary: 'tomato',
     lightgrey: 'rgb(245, 245, 245)',
     darkgrey: 'rgb(50, 50, 50)',
   },
