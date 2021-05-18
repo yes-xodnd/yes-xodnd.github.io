@@ -27,12 +27,14 @@ const Tags = ({ tags, handleClick }) => (
 
 // style
 const ListItem = styled.li`
+  margin-bottom: 1rem;
   padding: 1rem 2rem;
   transition: 200ms;
   border: 1px solid transparent;
   
   &:hover {
     border: 1px solid black;
+    box-shadow: 5px 5px 5px lightgrey;
   }
 `
 
