@@ -1,4 +1,4 @@
-import { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import GlobalStyle from '../style/GlobalStyle'
 import theme from '../style/theme'
 import Footer from '../components/Footer'
@@ -11,9 +11,16 @@ export default function App({ Component, pageProps }) {
       <GlobalStyle />
       <ThemeProvider theme={theme}>
         <Header />
-        <Component { ...pageProps } />
+        <Main>
+          <Component { ...pageProps } />
+        </Main>
         <Footer />
       </ThemeProvider>
     </>
   )
 }
+
+const Main = styled.main`
+  padding: 2rem 1rem;
+  min-height: 100vh;
+`
