@@ -38,6 +38,7 @@ export default TagList;
 
 
 const Container = styled.section`
+  position: relative;
   background: white;
   font-size: ${({ theme }) => theme.font.sm };
 
