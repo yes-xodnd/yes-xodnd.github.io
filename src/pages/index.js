@@ -1,15 +1,40 @@
 import styled from 'styled-components'
+import { getAllPosts } from '../lib/api'
+import Posts from '../components/Posts'
 
-export default function Home() {
+function Home({ allPosts, allTags }) {
   return (
     <div>
-      <HeaderImage></HeaderImage>
-
+      <Posts { ...{ allPosts, allTags } } ></Posts>
     </div>
-  )
+  ) 
+}
+export default Home
+
+// static
+export function getStaticProps() {
+  const allPosts = getAllPosts(['slug', 'title', 'date', 'tags'])
+  const allTags = getAllTags(allPosts)
+  
+  return {
+    props: {
+      allPosts,
+      allTags
+    }
+  }
+} 
+
+function getAllTags(allPosts) {
+  const map = {}
+
+  for (let post of allPosts) {
+    for (let tag of post.tags) {
+      map[tag] = map[tag] ? map[tag] + 1 : 1
+    }
+  }
+  return Object
+  .entries(map)
+  .map(([tagName, count]) => ({ tagName, count }))
+  .sort((a, b) => b.count - a.count)
 }
 
-const HeaderImage = styled.div`
-  min-height: 100px;
-  background-color: lightgrey;
-`
