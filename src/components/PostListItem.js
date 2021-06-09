@@ -9,7 +9,7 @@ function PostListItem({ post, handleClickTag }) {
   return (
     <ListItem key={slug}>
       <Date>{ dateFormat(date) }</Date>
-      <Link href={'/posts/[slug].js'} as={`/posts/${slug}`} >
+      <Link href={'/[slug].js'} as={`/${slug}`} >
         <Title>{ title }</Title>
       </Link>
       <Tags tags={tags} handleClick={handleClickTag} />
