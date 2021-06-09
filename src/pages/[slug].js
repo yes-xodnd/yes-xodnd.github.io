@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-import { getAllPosts, getPostBySlug } from '../../lib/api'
-import markdownToHtml from '../../lib/markdown'
-import dateFormat from '../../lib/dateFormat'
-import codeHighlight from '../../style/codeHighlight'
+import { getAllPosts, getPostBySlug } from '../lib/api'
+import markdownToHtml from '../lib/markdown'
+import dateFormat from '../lib/dateFormat'
+import codeHighlight from '../style/codeHighlight'
 
 export default function Post({ post }) {
   return (
